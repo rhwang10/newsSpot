@@ -1,0 +1,27 @@
+<template>
+</template>
+
+<script>
+import axios from 'axios'
+import config from '../../config/config.js'
+
+export default {
+
+  data: function () {
+    return {
+    }
+  },
+
+  methods: {
+    getNationalTopArticles (callback) {
+      axios.get(config.nytimesTopNationalJsonURL + config.nytimesTopStoriesAPIKey)
+      .then(response => {
+        callback(response)
+      })
+      .catch(e => {
+        console.log('Error in getNationalTopArticles in API.vue')
+      })
+    }
+  }
+}
+</script>
