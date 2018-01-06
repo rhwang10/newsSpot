@@ -16,12 +16,15 @@
         </div>
 
         <md-card-expand-trigger>
-          <md-button>Reddit threads</md-button>
+          <md-button v-on:click.native='relatedRedditThreads()'>Reddit threads</md-button>
         </md-card-expand-trigger>
       </md-card-actions>
 
       <md-card-expand-content>
         <md-card-content>
+          <li v-for='thread in threads'>
+            <md-button class='md-raised' :href='redditBase + thread.data.permalink' target='_blank'>{{thread.data.subreddit}}</md-button>
+          </li>
         </md-card-content>
       </md-card-expand-content>
     </md-card-expand>
@@ -32,6 +35,7 @@
 import Vue from 'vue'
 import {MdCard, MdButton} from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
+import api from './API.vue'
 
 Vue.use(MdCard)
 Vue.use(MdButton)
@@ -39,10 +43,21 @@ Vue.use(MdButton)
 export default {
   data: function () {
     return {
+      threads: null,
+      redditBase: 'https://www.reddit.com'
     }
   },
 
-  props: ['multimedia', 'title', 'abstract', 'url']
+  props: ['multimedia', 'title', 'abstract', 'url'],
+
+  methods: {
+    relatedRedditThreads () {
+      api.methods.getRelatedRedditThreads(this.title, searchObject => {
+        this.threads = searchObject.data.data.children
+        console.log(this.threads)
+      })
+    }
+  }
 }
 </script>
 

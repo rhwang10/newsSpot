@@ -21,6 +21,16 @@ export default {
       .catch(e => {
         console.log('Error in getNationalTopArticles in API.vue')
       })
+    },
+
+    getRelatedRedditThreads (query, callback) {
+      axios.get(config.redditSearchURL + query + '&limit=5')
+      .then(response => {
+        callback(response)
+      })
+      .catch(e => {
+        console.log('Error in getRelatedRedditThreads in API.vue')
+      })
     }
   }
 }
