@@ -15,7 +15,7 @@ npm run dev
 npm run build
 ```
 
-Make to to configure the configuration file correctly. Make the appropriate changes to:
+Make sure to to configure the configuration file correctly. This is mainly plugging in your API keys for each of the APIs. You will see a list of the APIs used below, so you know which keys to get. Make the appropriate changes to:
 ```bash
 config/config.js
 ```
@@ -23,6 +23,10 @@ Using the template found in
 ```bash
 config/config.js.dist
 ```
+
+APIs used in this project:
+* [NYTimes Top Stories](https://developer.nytimes.com/top_stories_v2.json)
+* [Reddit Search](https://www.reddit.com/dev/api/)
 
 # Built with
 
