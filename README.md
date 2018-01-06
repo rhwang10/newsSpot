@@ -1,8 +1,8 @@
-# news-spot
+# newsSpot
 
-> A Vue.js project
+Welcome to newsSpot! This is an application developed in Vue.js, that I created to automagically link news articles from various sources to corresponding Reddit threads. This project is still in development. I will continue to add more functionality. See the notes below on how to setup the development environment. Those instructions will give you a copy of the project, and you can add features and continue to develop the web application.
 
-## Build Setup
+# Getting Started
 
 ``` bash
 # install dependencies
@@ -15,4 +15,12 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Packages used so far
+```bash
+npm install axios
+
+npm install vue-material@beta --save
+
+```
+Please refer here for more information on the Material Design package I used: https://vuematerial.io/getting-started
+Here is the HTTP client: https://github.com/axios/axios
