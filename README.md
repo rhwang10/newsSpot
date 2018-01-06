@@ -15,6 +15,15 @@ npm run dev
 npm run build
 ```
 
+Make to to configure the configuration file correctly. Make the appropriate changes to:
+```bash
+config/config.js
+```
+Using the template found in
+```bash
+config/config.js.dist
+```
+
 # Built with
 
 * [Axios](https://github.com/axios/axios)
