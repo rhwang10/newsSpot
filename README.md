@@ -15,12 +15,18 @@ npm run dev
 npm run build
 ```
 
-# Packages used so far
+# Built with
+
+* [Axios](https://github.com/axios/axios)
+* [Vue Material](https://vuematerial.io/getting-started)
+
 ```bash
 npm install axios
 
 npm install vue-material@beta --save
 
 ```
-Please refer here for more information on the Material Design package I used: https://vuematerial.io/getting-started
-Here is the HTTP client: https://github.com/axios/axios
+
+# License
+
+This project is licensed under the MIT License.
