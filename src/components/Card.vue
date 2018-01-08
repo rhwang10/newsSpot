@@ -40,11 +40,14 @@ import api from './API.vue'
 Vue.use(MdCard)
 Vue.use(MdButton)
 
+const levenshtein = require('js-levenshtein');
+
 export default {
   data: function () {
     return {
-      threads: null,
-      redditBase: 'https://www.reddit.com'
+      threads: [],
+      redditBase: 'https://www.reddit.com',
+      numResults: 0
     }
   },
 
@@ -52,10 +55,31 @@ export default {
 
   methods: {
     relatedRedditThreads () {
-      api.methods.getRelatedRedditThreads(this.title, searchObject => {
-        this.threads = searchObject.data.data.children
-        console.log(this.threads)
+      api.methods.getRelatedRedditThreads(this.title).then( searchObject => {
+
+        for (var i = 0; i < searchObject.data.data.children.length; i++) {
+          if (this.LevenshteinDistance(this.title, searchObject.data.data.children[i].data.title) === true) {
+            if (!(searchObject.data.data.children[i] in this.threads)) {
+              this.threads.push(searchObject.data.data.children[i])
+            }
+          }
+        }
+        // this.threads = searchObject.data.data.children
+        // this.numResults = searchObject.data.data.children.length
+        // console.log(this.threads)
       })
+    },
+
+    LevenshteinDistance (title1, title2) {
+      var distance = levenshtein(title1.toLowerCase(), title2.toLowerCase())
+      if (distance < 25) {
+        return true
+      } else {
+        // console.log(title1)
+        // console.log(title2)
+        // console.log(distance)
+        return false
+      }
     }
   }
 }

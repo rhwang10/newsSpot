@@ -23,14 +23,15 @@ export default {
       })
     },
 
-    getRelatedRedditThreads (query, callback) {
-      axios.get(config.redditSearchURL + query + '&limit=5')
-      .then(response => {
-        callback(response)
-      })
-      .catch(e => {
-        console.log('Error in getRelatedRedditThreads in API.vue')
-      })
+    async getRelatedRedditThreads (query, callback) {
+      let response = await axios.get(config.redditSearchURL + query + '&limit=5')
+      return response
+      // .then(response => {
+        // callback(response)
+      // })
+      // .catch(e => {
+      //   console.log('Error in getRelatedRedditThreads in API.vue')
+      // })
     }
   }
 }
