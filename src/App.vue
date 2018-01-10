@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>newsSpot</h1>
-    <button v-on:click='NationalTopArticles()'>test</button>
+    <button v-on:click='NationalTopArticles()'>Get Top National NY Times articles</button>
     <ul id="cards" v-if="NatTopData">
       <li id="card" v-for="article in NatTopData.data.results">
         <cards v-bind="article"></cards>
@@ -28,10 +28,15 @@ export default {
 
   methods: {
     NationalTopArticles () {
-      api.methods.getNationalTopArticles(information => {
-        console.log(information)
-        this.NatTopData = information
+      api.methods.getNationalTopArticles().then(response => {
+        this.NatTopData = response
+        console.log(this.NatTopData.data.results)
       })
+      // console.log(this.NatTopData)
+      // api.methods.getNationalTopArticles(information => {
+      //   this.NatTopData = information
+      //   console.log(this.NatTopData)
+      // })
     }
   }
 }

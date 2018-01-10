@@ -11,18 +11,14 @@
 
     <md-card-expand>
       <md-card-actions md-alignment="space-between">
-        <div>
           <md-button class='md-raised' :href='url' target='_blank' :md-ripple='false'>Link</md-button>
-        </div>
-
         <md-card-expand-trigger>
           <md-button v-on:click.native='relatedRedditThreads()'>Reddit threads</md-button>
         </md-card-expand-trigger>
       </md-card-actions>
-
       <md-card-expand-content>
         <md-card-content>
-          <li v-for='thread in threads'>
+          <li v-for='thread in threads' v-if='threads'>
             <md-button class='md-raised' :href='redditBase + thread.data.permalink' target='_blank'>{{thread.data.subreddit}}</md-button>
           </li>
         </md-card-content>
@@ -45,9 +41,9 @@ const levenshtein = require('js-levenshtein');
 export default {
   data: function () {
     return {
-      threads: [],
+      threads: null,
       redditBase: 'https://www.reddit.com',
-      numResults: 0
+      dataReady: false
     }
   },
 
@@ -55,18 +51,9 @@ export default {
 
   methods: {
     relatedRedditThreads () {
-      api.methods.getRelatedRedditThreads(this.title).then( searchObject => {
-
-        for (var i = 0; i < searchObject.data.data.children.length; i++) {
-          if (this.LevenshteinDistance(this.title, searchObject.data.data.children[i].data.title) === true) {
-            if (!(searchObject.data.data.children[i] in this.threads)) {
-              this.threads.push(searchObject.data.data.children[i])
-            }
-          }
-        }
-        // this.threads = searchObject.data.data.children
-        // this.numResults = searchObject.data.data.children.length
-        // console.log(this.threads)
+      api.methods.getRelatedRedditThreads(this.title).then(response => {
+        this.threads = response.data.data.children
+        this.dataReady = true
       })
     },
 
@@ -75,9 +62,6 @@ export default {
       if (distance < 25) {
         return true
       } else {
-        // console.log(title1)
-        // console.log(title2)
-        // console.log(distance)
         return false
       }
     }
