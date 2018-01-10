@@ -11,14 +11,14 @@
     <button v-on:click='NationalTopArticles(section)'>Get Top National NY Times articles</button>
     <ul id="cards" v-if="NatTopData">
       <li id="card" v-for="article in NatTopData.data.results">
-        <cards v-bind="article"></cards>
+        <NYTimesCard v-bind="article"></NYTimesCard>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import Cards from './components/Card.vue'
+import NYTimesCard from './components/NYTimesCard.vue'
 import api from './components/API.vue'
 
 export default {
@@ -35,7 +35,7 @@ export default {
   },
 
   components: {
-    Cards
+    NYTimesCard
   },
 
   methods: {
