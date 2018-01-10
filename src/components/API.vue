@@ -13,28 +13,14 @@ export default {
   },
 
   methods: {
-    async getNationalTopArticles () {
-      let response = await axios.get(config.nytimesTopNationalJsonURL + config.nytimesTopStoriesAPIKey)
+    async getNationalTopArticles (section) {
+      let response = await axios.get(config.nyTimesTopStories + section + '.json?api-key=' + config.nytimesTopStoriesAPIKey)
       return response
-      // axios.get(config.nytimesTopNationalJsonURL + config.nytimesTopStoriesAPIKey)
-      // .then(response => {
-      //   callback(response)
-      // })
-      // .catch(e => {
-      //   console.log('Error in getNationalTopArticles in API.vue')
-      // })
     },
 
     async getRelatedRedditThreads (query) {
       let response = await axios.get(config.redditSearchURL + query + '&limit=5')
       return response
-      // axios.get(config.redditSearchURL + query + '&limit=5')
-      // .then(response => {
-      //   callback(response)
-      // })
-      // .catch(e => {
-      //   console.log('Error in getRelatedRedditThreads in API.vue')
-      // })
     }
   }
 }

@@ -1,7 +1,14 @@
 <template>
   <div id="app">
     <h1>newsSpot</h1>
-    <button v-on:click='NationalTopArticles()'>Get Top National NY Times articles</button>
+    <h2>Connect top news articles with corresponding Reddit threads!</h2>
+
+    <select v-model='section'>
+      <option disabled value=''>Select a section</option>
+      <option v-for='section in sections' v-bind:value='section'>{{section}}</option>
+    </select>
+
+    <button v-on:click='NationalTopArticles(section)'>Get Top National NY Times articles</button>
     <ul id="cards" v-if="NatTopData">
       <li id="card" v-for="article in NatTopData.data.results">
         <cards v-bind="article"></cards>
@@ -18,7 +25,12 @@ export default {
   name: 'app',
   data () {
     return {
-      NatTopData: null
+      NatTopData: null,
+      sections: ['home', 'opinion', 'world', 'national', 'politics', 'upshot',
+      'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts',
+      'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food',
+      'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider'],
+      section: ''
     }
   },
 
@@ -27,16 +39,10 @@ export default {
   },
 
   methods: {
-    NationalTopArticles () {
-      api.methods.getNationalTopArticles().then(response => {
+    NationalTopArticles (section) {
+      api.methods.getNationalTopArticles(section).then(response => {
         this.NatTopData = response
-        console.log(this.NatTopData.data.results)
       })
-      // console.log(this.NatTopData)
-      // api.methods.getNationalTopArticles(information => {
-      //   this.NatTopData = information
-      //   console.log(this.NatTopData)
-      // })
     }
   }
 }
