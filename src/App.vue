@@ -26,10 +26,10 @@ export default {
   data () {
     return {
       NatTopData: null,
-      sections: ['home', 'opinion', 'world', 'national', 'politics', 'upshot',
-      'nyregion', 'business', 'technology', 'science', 'health', 'sports', 'arts',
-      'books', 'movies', 'theater', 'sundayreview', 'fashion', 'tmagazine', 'food',
-      'travel', 'magazine', 'realestate', 'automobiles', 'obituaries', 'insider'],
+      sections: ['Home', 'Opinion', 'World', 'National', 'Politics', 'Upshot',
+      'NYregion', 'Business', 'Technology', 'Science', 'Health', 'Sports', 'Arts',
+      'Books', 'Movies', 'Theater', 'SundayReview', 'Fashion', 'TMagazine', 'Food',
+      'Travel', 'Magazine', 'RealEstate', 'Automobiles', 'Obituaries', 'Insider'],
       section: ''
     }
   },
@@ -40,7 +40,7 @@ export default {
 
   methods: {
     NationalTopArticles (section) {
-      api.methods.getNationalTopArticles(section).then(response => {
+      api.methods.getNationalTopArticles(section.toLowerCase()).then(response => {
         this.NatTopData = response
       })
     }
