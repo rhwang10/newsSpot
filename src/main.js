@@ -9,7 +9,7 @@ import NYTimesApp from './NYTimes.vue'
 
 const routes = {
   '/': Home,
-  '/nytimesapp': NYTimesApp
+  '/nytimes': NYTimesApp
 }
 
 new Vue({
