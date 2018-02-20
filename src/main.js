@@ -8,7 +8,7 @@ import NYTimesApp from './NYTimes.vue'
 // })
 
 const routes = {
-  '/': Home,
+  '/': NYTimesApp,
   '/nytimes': NYTimesApp
 }
 
