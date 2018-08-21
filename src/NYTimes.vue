@@ -2,6 +2,7 @@
   <div id="app">
     <h1>newsSpot</h1>
     <h2>Connect top NYTimes news articles with corresponding Reddit threads!</h2>
+    <h3>Proud Partner of The New York Times, The Washington Post, and The Economist</h3>
 
     <select v-model='section'>
       <option disabled value=''>Select a section</option>
@@ -74,5 +75,10 @@ li {
 
 a {
   color: #42b983;
+}
+
+.button {
+  background-color: #4CAF50;
+  border: none;
 }
 </style>
